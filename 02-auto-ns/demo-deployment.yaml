@@ -16,7 +16,7 @@ spec:
         app: auto-ns-app
     spec:
       containers:
-      - image: hello-world:latest
+      - image: nginx:latest
         name: auto-ns-app
         resources:
           limits:
