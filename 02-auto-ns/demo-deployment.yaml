@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auto-ns-deployment
+  namespace: auto-ns
+  labels:
+    app: auto-ns-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auto-ns-app
+  template:
+    metadata:
+      labels:
+        app: auto-ns-app
+    spec:
+      containers:
+      - image: hello-world:latest
+        name: auto-ns-app
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "250m"
+          requests:
+            memory: "64Mi"
+            cpu: "250m"

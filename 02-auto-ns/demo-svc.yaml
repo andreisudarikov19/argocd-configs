@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-service
+  namespace: auto-ns
+  labels:
+    app: auto-ns-app
+spec:
+  ports:
+    - name: auto-ns-ports
+      nodePort: 31008
+      port: 80
+      targetPort: 5580
+      protocol: TCP
+  selector:
+    app: auto-ns-app
+  type: NodePort
