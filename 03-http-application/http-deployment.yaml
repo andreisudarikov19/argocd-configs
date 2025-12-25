@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-time
+  namespace: http-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-time
+  template:
+    metadata:
+      labels:
+        app: simple-time
+    spec:
+      volumes:
+        - name: html
+          emptyDir: {}
+        - name: template
+          configMap:
+            name: simple-time-page
+
+      initContainers:
+        - name: generate
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              set -eu
+              TS="$(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+              sed "s/{{GENERATED_AT}}/${TS}/" /tpl/index.html > /work/index.html
+          volumeMounts:
+            - name: template
+              mountPath: /tpl
+            - name: html
+              mountPath: /work
+
+      containers:
+        - name: web
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: html
+              mountPath: /usr/share/nginx/html
+          resources:
+            limits:
+              memory: "64Mi"
+              cpu: "250m"
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
