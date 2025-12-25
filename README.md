@@ -50,3 +50,7 @@ To install ArgoCD on minikube for experiments on a local machine:
     The password is under `data:password`.
 
 </details>
+
+## App naming conventions in ArgoCD
+
+* Capital lettters are not allowed.
