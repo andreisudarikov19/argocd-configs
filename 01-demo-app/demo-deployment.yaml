@@ -5,6 +5,7 @@ metadata:
   namespace: demo
   labels:
     app: demo-app
+    test: additional-metadata
 spec:
   replicas: 1
   selector:
