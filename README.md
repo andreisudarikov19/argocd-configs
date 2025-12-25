@@ -54,3 +54,9 @@ To install ArgoCD on minikube for experiments on a local machine:
 ## App naming conventions in ArgoCD
 
 * Capital lettters are not allowed.
+
+## Notes on behavior
+
+* While ArgoCD can create namespaces automatically, it **won't** delete them in this case.
+
+    > Thus, to avoid hassle with manual search and deletion of namespaces, provide a namespace manifest with every app, so that ArgoCD can clean up after itself.
