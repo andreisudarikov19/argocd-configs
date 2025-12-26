@@ -7,11 +7,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: simple-time
+      app.kubernetes.io/name: simple-time
   template:
     metadata:
       labels:
-        app: simple-time
+        app.kubernetes.io/name: simple-time
     spec:
       volumes:
         - name: html
