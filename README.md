@@ -2,6 +2,12 @@
 
 This repository contains app configuration for my ArgoCD testing cluster.
 
+Repository address for quick copying:
+
+```url
+https://github.com/andreisudarikov19/argocd-configs.git
+```
+
 <details>
     <summary>How to install and use ArgoCD on minikube</summary>
 
@@ -54,6 +60,8 @@ To install ArgoCD on minikube for experiments on a local machine:
 
 
 ## Notes on behavior
+
+* When specifying a config location in the repository, start with `./` for root directory.
 
 * While ArgoCD can create namespaces automatically, it **won't** delete them in this case.
 
