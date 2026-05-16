@@ -3,7 +3,7 @@
 This repository contains app configuration for my ArgoCD testing cluster.
 
 <details>
-    <summary>How to install ArgoCD on minikube</summary>
+    <summary>How to install and use ArgoCD on minikube</summary>
 
 To install ArgoCD on minikube for experiments on a local machine:
 
@@ -42,18 +42,16 @@ To install ArgoCD on minikube for experiments on a local machine:
 1. Get the admin password value to log into the UI:
 
     ```sh
-    kubectl get secret argocd-initial-admin-secret \
-        -n argocd \
-        -o yaml # | yq
+    kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d; echo
     ```
 
-    The password is under `data:password`.
-
 </details>
+
 
 ## App naming conventions in ArgoCD
 
 * Capital lettters are not allowed.
+
 
 ## Notes on behavior
 
